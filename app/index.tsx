@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FlatList, Text, View } from "react-native";
 import { Header } from "./components/Header";
+import { ListeItem } from "./components/ListeItem";
 
 interface Item {
   id: string;
@@ -16,20 +17,25 @@ export default function Index() {
   ]);
 
   const renderItem = ({ item }: { item: Item }) => (
-    <View>
-      <Text>{item.title}</Text>
-    </View>
+    <ListeItem title={item.title} />
   );
 
   return (
     <View >
       <Header />
 
-      <FlatList
-        data={data} // Les données à afficher
-        renderItem={renderItem} // La fonction qui retourne un composant pour chaque élément
-        keyExtractor={(item) => item.id} // Clé unique pour chaque élément
-      />
+      <View style={{
+        width: "80%",
+        backgroundColor: "rgb(255 255 255)",
+        padding: 10,
+        margin: "10%"
+      }}>
+        <FlatList
+          data={data} // Les données à afficher
+          renderItem={renderItem} // La fonction qui retourne un composant pour chaque élément
+          keyExtractor={(item) => item.id} // Clé unique pour chaque élément
+        />
+      </View>
     </View>
   );
 }
