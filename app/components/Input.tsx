@@ -11,7 +11,11 @@ export function Input(
     const [inputValue, setInputValue] = useState("");
 
     const handleClick = () => {
+        if (inputValue === "") {
+            return;
+        }
         props.handleClick(inputValue);
+        setInputValue("");
     }
 
     return (
