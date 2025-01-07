@@ -17,7 +17,7 @@ export default function Index() {
   ]);
 
   const renderItem = ({ item }: { item: Item }) => (
-    <ListeItem title={item.title} />
+    <ListeItem title={item.title} state={false}/>
   );
 
   return (
