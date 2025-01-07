@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { Alert, Text, View } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from "react";
 
@@ -20,7 +20,12 @@ export function ListeItem(
     }
 
     const handleDelete = () => {
-        props.handleDelete(props.id);
+        if (window.confirm('Veuillez confirmer la suppression')) {
+            props.handleDelete(props.id);
+        } else {
+            return;
+        }
+
     }
 
     return (
@@ -45,7 +50,7 @@ export function ListeItem(
                 color: "red",
                 cursor: "pointer"
             }}
-            onPress={handleDelete}
+                onPress={handleDelete}
             >Supprimer</Text>
         </View>
     );
