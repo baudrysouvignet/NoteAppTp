@@ -20,10 +20,27 @@ export function ListeItem(
     }
 
     const handleDelete = () => {
-        if (window.confirm('Veuillez confirmer la suppression')) {
+        if (typeof window !== 'undefined' && window.confirm) {
+            if (window.confirm('Veuillez confirmer la suppression')) {
             props.handleDelete(props.id);
-        } else {
+            } else {
             return;
+            }
+        } else {
+            Alert.alert(
+            "Confirmation",
+            "Veuillez confirmer la suppression",
+            [
+                {
+                text: "Annuler",
+                style: "cancel"
+                },
+                {
+                text: "Confirmer",
+                onPress: () => props.handleDelete(props.id)
+                }
+            ]
+            );
         }
 
     }
@@ -36,13 +53,13 @@ export function ListeItem(
                 padding: 10,
                 flexDirection: "row",
             }}
-            onTouchEnd={check}
         >
             <Ionicons
                 name={checked ? "checkmark-circle" : "close-circle"}
                 size={24}
                 color={checked ? "green" : "red"}
                 style={{ marginRight: 10 }}
+                onPress={check}
             />
             <Text>{props.title}</Text>
             <Text style={{
