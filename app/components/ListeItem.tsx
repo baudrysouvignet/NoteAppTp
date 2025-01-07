@@ -6,15 +6,21 @@ import React, { useState } from "react";
 
 export function ListeItem(
     props: {
+        id: number;
         title: string;
         state: boolean;
+        handleDelete: (id: number) => void;
     }
 ) {
     const [checked, setChecked] = useState(props.state);
 
     const check = () => {
         setChecked(!checked);
-        
+
+    }
+
+    const handleDelete = () => {
+        props.handleDelete(props.id);
     }
 
     return (
@@ -34,6 +40,13 @@ export function ListeItem(
                 style={{ marginRight: 10 }}
             />
             <Text>{props.title}</Text>
+            <Text style={{
+                marginLeft: "auto",
+                color: "red",
+                cursor: "pointer"
+            }}
+            onPress={handleDelete}
+            >Supprimer</Text>
         </View>
     );
 }

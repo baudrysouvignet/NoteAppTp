@@ -17,9 +17,16 @@ export default function Index() {
     { id: 3, title: 'Item 3' },
   ]);
 
+
+
   const renderItem = ({ item }: { item: Item }) => (
-    <ListeItem title={item.title} state={false}/>
+    <ListeItem id={item.id} title={item.title} state={false} handleDelete={deleteData}/>
   );
+
+  const deleteData = (id: number) => {
+    const newData = data.filter((item) => item.id !== id);
+    setData(newData);
+  }
 
   const addData = (title: string) => {
     const newId = data.length > 0 ? data[data.length - 1].id + 1 : 1;
