@@ -12,6 +12,7 @@ export function Input(
 
     const handleClick = () => {
         if (inputValue === "") {
+            window.alert("Veuillez entrer un texte");
             return;
         }
         props.handleClick(inputValue);
